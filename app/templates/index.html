@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hola</title>
+</head>
+<body>
+<h1>productos y categorias</h1>
+{% block content %}
+    <a href="{% url 'erp:vista2' %}">vista 2</a>
+    <ul>
+        {% for  Category in categories %}
+            <li>{{ Category.id }} / {{ Category.name }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+<p>{{ name }} hola</p>
+
+
+</body>
+</html>
