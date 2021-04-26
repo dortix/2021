@@ -1,6 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
-def myfirstview(response):
-    return HttpResponse("idex")
+def myfirstview(request):
+    data = {
+        'name': 'danilo'
+    }
+    return render(request, 'index.html', data)
