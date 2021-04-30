@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 
 from core.erp.models import Category
@@ -44,6 +45,7 @@ class CategoryCreateView(CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'category/create.html'
+    success_url = reverse_lazy('erp:category_list')
 
     def get_context_data(self, **kwargs):
          context = super().get_context_data(**kwargs)
