@@ -1,6 +1,5 @@
-{% extends 'body.html' %}
+{% extends 'layout.html' %}
 {% load static %}
-
 {% block head %}
     <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
     <link rel="stylesheet"
@@ -10,10 +9,14 @@
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
 
+    {% block head_list %}
+
+    {% endblock %}
+
 {% endblock %}
 
 {% block content %}
-    <div class="card card-default">
+    <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">
                 <i class="fas fa-search"></i>
@@ -35,20 +38,22 @@
             </table>
         </div>
         <div class="card-footer">
-            <a href="{{ create_url }}" class="btn btn-primary btn-flat btntest">
+            <a href="{{ create_url }}" class="btn btn-primary btn-flat btnTest">
                 <i class="fas fa-plus"></i> Nuevo registro
             </a>
         </div>
     </div>
 {% endblock %}
+
 {% block javascript %}
     <script type="application/javascript">
         $(function () {
             $('#data').DataTable({
                 responsive: true,
-                bAutoWidth: false
+                autoWidth: false
             });
-             $('.btntest').on('click', function () {
+
+            $('.btnTest').on('click', function () {
                 $.ajax({
                     url: '{% url 'erp:category_list' %}',
                     type: 'POST',
@@ -57,12 +62,11 @@
                 }).done(function (data) {
                     console.log(data);
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert(textStatus+': '+errorThrown);
+                    alert(textStatus + ': ' + errorThrown);
                 }).always(function (data) {
 
                 });
             });
         });
     </script>
-
 {% endblock %}
